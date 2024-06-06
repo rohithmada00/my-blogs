@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_blogs_web/widgets/hover_text.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({super.key});
@@ -13,47 +14,27 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       title: Text(
-        'Rohith Reddy Mada',
-        style: GoogleFonts.roboto(),
+        'Rohith Reddy',
+        style: GoogleFonts.caveat(
+          textStyle: const TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       actions: [
-        TextButton(
-          // style: style,
-          onPressed: () {},
-          child: const Text('Home'),
+        HoverText(
+          text: 'Home',
+          onTap: () {},
         ),
-        TextButton(
-          // style: style,
-          onPressed: () {},
-          child: const Text('Projects'),
+        HoverText(
+          text: 'Projects',
+          onTap: () {},
         ),
-        TextButton(
-          // style: style,
-          onPressed: () {},
-          child: const Text('About'),
+        HoverText(
+          text: 'About',
+          onTap: () {},
         ),
-        TextButton(
-          // style: style,
-          onPressed: () {},
-          child: const Text('Contact'),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            FontAwesomeIcons.linkedin,
-          ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            FontAwesomeIcons.github,
-          ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            FontAwesomeIcons.instagram,
-          ),
+        HoverText(
+          text: 'Contact',
+          onTap: () {},
         ),
       ],
     );
