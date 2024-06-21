@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_blogs_web/widgets/hover_text.dart';
 
@@ -13,20 +13,28 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     // );
 
     return AppBar(
+      automaticallyImplyLeading: false,
       title: Text(
-        'Rohith Reddy',
-        style: GoogleFonts.caveat(
-          textStyle: const TextStyle(fontWeight: FontWeight.bold),
+        'RR',
+        style: GoogleFonts.notoSerif(
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 40.0,
+          ),
         ),
       ),
       actions: [
         HoverText(
           text: 'Home',
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, '/');
+          },
         ),
         HoverText(
           text: 'Projects',
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, 'projects');
+          },
         ),
         HoverText(
           text: 'About',
@@ -34,7 +42,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         HoverText(
           text: 'Contact',
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, 'contact');
+          },
         ),
       ],
     );
