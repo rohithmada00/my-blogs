@@ -14,6 +14,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
       title: Text(
         'RR',
         style: GoogleFonts.notoSerif(
@@ -38,7 +40,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         HoverText(
           text: 'About',
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, 'about');
+          },
         ),
         HoverText(
           text: 'Contact',

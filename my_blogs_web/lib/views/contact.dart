@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -6,6 +7,7 @@ import 'package:my_blogs_web/widgets/custom_elevated_button.dart';
 import 'dart:convert';
 
 import 'package:my_blogs_web/widgets/custom_text_form_field.dart';
+import 'package:my_blogs_web/widgets/heading.dart';
 
 class Contact extends StatefulWidget {
   const Contact({super.key});
@@ -22,62 +24,80 @@ class _ContactState extends State<Contact> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            CustomTextFormField(
-              labelText: 'Name',
-              hintText: 'Enter your name',
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your name';
-                }
-                return null;
-              },
-              controller: _nameController,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(32.0),
+            child: Heading(
+                title: 'Get in touch.',
+                subtitle:
+                    'Hey there, Got a job offer or any collaboration plan with me ? Please contact me by using the form. \n Or reach out to me @ rohithmada00@gmail.com .'),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+                left: 16, right: MediaQuery.of(context).size.width / 3),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  CustomTextFormField(
+                    labelText: 'Name',
+                    hintText: 'Enter your name',
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your name';
+                      }
+                      return null;
+                    },
+                    controller: _nameController,
+                  ),
+                  CustomTextFormField(
+                    labelText: 'Email',
+                    hintText: 'Enter your email',
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                        return 'Please enter a valid email address';
+                      }
+                      return null;
+                    },
+                    controller: _emailController,
+                  ),
+                  CustomTextFormField(
+                    labelText: 'Message',
+                    hintText: 'Enter your message',
+                    maxLines: 5,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your message';
+                      }
+                      return null;
+                    },
+                    controller: _messageController,
+                  ),
+                  const SizedBox(height: 16),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: CustomElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _sendEmail();
+                        }
+                      },
+                      // child: const Text('Send'),
+                      text: 'SEND MESSAGE',
+                      icon: FontAwesomeIcons.solidPaperPlane,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            CustomTextFormField(
-              labelText: 'Email',
-              hintText: 'Enter your email',
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                }
-                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                  return 'Please enter a valid email address';
-                }
-                return null;
-              },
-              controller: _emailController,
-            ),
-            CustomTextFormField(
-              labelText: 'Message',
-              hintText: 'Enter your message',
-              maxLines: 5,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your message';
-                }
-                return null;
-              },
-              controller: _messageController,
-            ),
-            const SizedBox(height: 16),
-            CustomElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _sendEmail();
-                }
-              },
-              // child: const Text('Send'),
-              text: 'SEND MESSAGE',
-              icon: FontAwesomeIcons.solidPaperPlane,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
