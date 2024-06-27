@@ -9,7 +9,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 // import 'package:my_blogs_web/widgets/default_footer.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: "assets/.env");
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
