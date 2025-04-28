@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:my_blogs_web/views/about.dart';
+import 'package:my_blogs_web/views/blog_list.dart';
 import 'package:my_blogs_web/views/contact.dart';
 import 'package:my_blogs_web/views/home.dart';
 import 'package:my_blogs_web/views/projects.dart';
@@ -9,7 +10,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 // import 'package:my_blogs_web/widgets/default_footer.dart';
 
 void main() async {
-  await dotenv.load(fileName: "assets/.env");
+  await dotenv.load(fileName: "assets/config.env");
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -42,6 +43,11 @@ void main() async {
               appBar: DefaultAppBar(),
               extendBodyBehindAppBar: true,
               body: About(),
+            ),
+        'blog': (context) => Scaffold(
+              appBar: const DefaultAppBar(),
+              extendBodyBehindAppBar: true,
+              body: BlogList(),
             ),
       },
     ),

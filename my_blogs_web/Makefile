@@ -1,8 +1,8 @@
 # Makefile for deploying the Flutter web projects to GitHub
-OUTPUT = /rohithmada00.github.io/
+OUTPUT = rohithmada00.github.io
 BASE_HREF = /$(OUTPUT)/
 GITHUB_USER = rohithmada00
-GITHUB_REPO = https://github.com/$(GITHUB_USER)/$(OUTPUT)
+GITHUB_REPO = https://github.com/$(GITHUB_USER)/$(OUTPUT).git
 BUILD_VERSION := $(shell powershell -Command "(Get-Content pubspec.yaml | Select-String 'version:').Line.Split(' ')[1]")
 
 # Deploy the Flutter web project to GitHub
@@ -11,21 +11,20 @@ ifndef OUTPUT
 	$(error OUTPUT is not set. Usage: make deploy OUTPUT=<output_repo_name>)
 endif
 
-	@echo "Clean existing repository"
+	@echo "Cleaning existing build..."
 	flutter clean
 
 	@echo "Getting packages..."
 	flutter pub get
 
-	@echo "Generating the web folder..."
-	flutter create . --platform web
-
 	@echo "Building for web..."
-	flutter build web --base-href $(BASE_HREF) --release
+	flutter build web --release
 
-	@echo "Deploying to git repository"
+	@echo "Deploying to git repository..."
 	cd build/web && \
 	git init && \
+	git config user.name "$(GITHUB_USER)" && \
+	git config user.email "$(GITHUB_USER)@gmail.com" && \
 	git add . && \
 	git commit -m "Deploy Version $(BUILD_VERSION)" && \
 	git branch -M main && \

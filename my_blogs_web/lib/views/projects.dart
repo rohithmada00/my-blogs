@@ -19,7 +19,7 @@ class Projects extends StatelessWidget {
           return const Center(child: Text('No projects found.'));
         } else {
           final projects = snapshot.data;
-          print('==projects== : ${snapshot.data}');
+          // print('==projects== : ${snapshot.data}');
           return ListView.builder(
             itemCount: projects?.length ?? 0,
             itemBuilder: (context, index) {

@@ -50,6 +50,12 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
             Navigator.pushNamed(context, 'contact');
           },
         ),
+        HoverText(
+          text: 'Blogs ',
+          onTap: () {
+            Navigator.pushNamed(context, 'blog');
+          },
+        ),
       ],
     );
   }
